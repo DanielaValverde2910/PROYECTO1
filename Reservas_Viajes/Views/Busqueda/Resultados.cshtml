@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RutaBus>
+
+@{
+    ViewData["Title"] = "Resultados de Búsqueda";
+}
+
+<h2>Rutas Disponibles</h2>
+
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Horario de Salida</th>
+                <th>Precio</th>
+                <th>Asientos Disponibles</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ruta in Model)
+            {
+                <tr>
+                    <td>@ruta.Origen</td>
+                    <td>@ruta.Destino</td>
+                    <td>@ruta.HorarioSalida</td>
+                    <td>@ruta.Precio</td>
+                    <td>@ruta.AsientosDisponibles</td>
+                    <td>
+                        <a asp-controller="Reserva" asp-action="SeleccionarAsiento" asp-route-id="@ruta.Id">Seleccionar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se encontraron rutas para los criterios proporcionados.</p>
+}

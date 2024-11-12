@@ -1,0 +1,23 @@
+﻿@model Reserva
+
+@{
+    ViewData["Title"] = "Formulario de Reserva";
+}
+
+<h2>Formulario de Reserva</h2>
+
+<div>
+    <h3>Ruta: @Model.RutaBus.Origen - @Model.RutaBus.Destino</h3>
+    <p><strong>Fecha de la reserva:</strong> @Model.FechaReserva</p>
+
+    <form asp-controller="Pago" asp-action="ProcesarPago" method="post">
+        <input type="hidden" name="ReservaId" value="@Model.Id" />
+        <label for="metodoPago">Método de Pago:</label>
+        <select name="MetodoPago" id="metodoPago">
+            <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+            <option value="PayPal">PayPal</option>
+        </select>
+
+        <button type="submit">Confirmar Pago</button>
+    </form>
+</div>

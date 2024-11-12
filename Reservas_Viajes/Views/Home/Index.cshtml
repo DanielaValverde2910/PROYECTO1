@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Página Principal";
+}
+
+<h2>Bienvenido a Reservas de Viajes</h2>
+
+<div>
+    <h3>Opciones Disponibles</h3>
+    <ul>
+        <li><a asp-controller="Reserva" asp-action="DetallesRuta">RESERVA</a></li>
+        <li><a asp-controller="Promociones" asp-action="Index">Promociones</a></li>
+        <li><a asp-controller="Reserva" asp-action="FormularioReserva">Hacer una Reserva</a></li>
+        <li><a asp-controller="Usuario" asp-action="Perfil">Mi Perfil</a></li>
+        <!-- Agrega otras opciones aquí -->
+    </ul>
+</div>
+
+<div>
+    <h3>Buscar rutas disponibles</h3>
+    <form asp-controller="Busqueda" asp-action="Buscar" method="get">
+        <div>
+            <label for="origen">Origen:</label>
+            <input type="text" id="origen" name="origen" />
+        </div>
+        <div>
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" name="destino" />
+        </div>
+        <div>
+            <label for="fecha">Fecha de salida:</label>
+            <input type="date" id="fecha" name="fecha" />
+        </div>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+

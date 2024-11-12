@@ -1,0 +1,13 @@
+﻿@model Reserva
+
+@{
+    ViewData["Title"] = "Confirmación de Reserva";
+}
+
+<h2>Reserva Confirmada</h2>
+
+<p>Gracias por su compra, @Model.Usuario.Nombre.</p>
+<p><strong>Ruta:</strong> @Model.RutaBus.Origen - @Model.RutaBus.Destino</p>
+<p><strong>Asiento:</strong> @Model.AsientoSeleccionado</p>
+<p><strong>Fecha de la Reserva:</strong> @Model.FechaReserva</p>
+<p><strong>Estado de Pago:</strong> @Model.PagoRealizado</p>

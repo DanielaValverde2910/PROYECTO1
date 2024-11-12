@@ -1,0 +1,42 @@
+﻿@model RutaBus
+
+@{
+    ViewData["Title"] = "Detalles de la Ruta";
+}
+
+<h2>Detalles de la Ruta</h2>
+
+<div>
+    <h3>@Model.Origen - @Model.Destino</h3>
+    <p><strong>Horario de Salida:</strong> @Model.HorarioSalida.ToString("dd/MM/yyyy HH:mm")</p>
+    <p><strong>Horario de Llegada:</strong> @Model.HorarioLlegada.ToString("dd/MM/yyyy HH:mm")</p>
+    <p><strong>Precio:</strong> @Model.Precio.ToString("C")</p>
+    <p><strong>Asientos Disponibles:</strong> @Model.AsientosDisponibles</p>
+
+    <!-- Formulario para seleccionar asiento -->
+    <h4>Selecciona tu Asiento</h4>
+    <form asp-controller="Reserva" asp-action="SeleccionarAsiento" method="post">
+        <input type="hidden" name="rutaBusId" value="@Model.Id" />
+
+        <div class="form-group">
+            <label for="asiento">Selecciona tu asiento (número de asiento):</label>
+            <input type="number"
+                   id="asiento"
+                   name="AsientoSeleccionado"
+                   min="1"
+                   max="@Model.AsientosDisponibles"
+                   class="form-control"
+                   required />
+            <small id="asientoHelp" class="form-text text-muted">
+                Ingresa un número de asiento entre 1 y @Model.AsientosDisponibles.
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Reservar</button>
+    </form>
+
+    @if (Model.AsientosDisponibles <= 0)
+    {
+        <p class="text-danger">Lo siento, no hay asientos disponibles para esta ruta.</p>
+    }
+</div>
